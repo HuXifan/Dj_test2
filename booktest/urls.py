@@ -9,3 +9,5 @@ urlpatterns = [
     # (\d+) 让Django进行地址匹配时将这一部分数字作为参数传递给视图
 
 ]
+
+# urlpatterns固定写法

@@ -20,6 +20,5 @@ class HeroInfo(models.Model):
     isDelete = models.BooleanField(default=False)  # 设置逻辑删除,默认不删除/软删除标记
 
 # 两个类有一对多的额关系
-# 仅仅是修改注释
 
 #  rm -rf .navicat64/
