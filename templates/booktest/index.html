@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>图书信息</title>
+</head>
+<body>
+<a href="/create">新增</a>
+{# 统一/开头#}
+<ul>
+    {% for book in books %}
+        <li>{{ book.btitle }}<br>
+            出版日期{{ book.bpub_date }}<br>
+            <a href="/delete{{ book.id }}">删除</a>
+
+        </li><br>
+
+    {% endfor %}
+</ul>
+</body>
+</html>
