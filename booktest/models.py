@@ -15,21 +15,21 @@ class HeroInfo(models.Model):
     hname = models.CharField(max_length=20)
     hgender = models.BooleanField(default=False)
     hcomment = models.CharField(max_length=256)  # 备注
-    # 两个类有一对多关系时，需要设置一个关系属性
+    # 两个类有一对多关系时，需要设置一个关系属性,在多的里面
     hbook = models.ForeignKey('BookInfo')
     isDelete = models.BooleanField(default=False)  # 设置逻辑删除,默认不删除/软删除标记
 
 
 # 两个类有一对多的关系,类之间有一对一，一对多，多对多的关系
-
+'''
 class NewsType(models.Model):
-    '''新闻类型类'''
+    # 新闻类型类
     typename = models.CharField(max_length=128)
     # 关系类型代表下面的信息
     typenews = models.ManyToManyField('NewInfo')
 
 
-class NewInfo(models.model):
+class NewInfo(models.Model):
     title = models.CharField(max_length=128)
     pub_date = models.DateTimeField(auto_created=True)
     content = models.TextField()
@@ -37,4 +37,27 @@ class NewInfo(models.model):
     # 定义关联属性。代表信息所属的类型
     # news_tpye = models.ManyToManyField('NewsType')
 
-#  rm -rf .navicat64/
+
+# 员工基本信息类,一对一定义在任何一个就可以
+class EmployeeBassicInfo(models.Model):
+    name = models.CharField(max_length=20)
+    age = models.IntegerField()
+    gneder = models.BooleanField(default=False)
+    employee_detail = models.OneToOneField('EmployeeDetailInfo')
+
+
+class EmployeeDetailInfo(models.Model):
+    addr = models.CharField(max_length=128)
+    tel = models.IntegerField(max_length=11)
+
+    # 关系属性，代表员工基本信息
+    # employee_bassic = models.OneToOneField('EmployeeBassicInfo')
+'''
+#  地域自关联 模型类
+class AreaInfo(models.Model):
+    # 地区名称
+    atitle = models.CharField(max_length=20)
+    # 关系属性，代表当前地区的父级地区
+    aParent = models.ForeignKey('self', null=True, blank=True)
+
+

@@ -1,7 +1,7 @@
 from datetime import date
 from django.shortcuts import render, redirect
 # redirect 导入重定向函数
-from booktest.models import BookInfo
+from booktest.models import BookInfo, AreaInfo
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 
@@ -40,3 +40,15 @@ def delete(request, bid):
     # 3 重定向，让浏览器还是访问首页
     # return HttpResponseRedirect('/index')
     return redirect('/index')
+
+
+def areas(request):
+    # 获取广州上级和下级地区
+    # 1 获取广州市信息
+    area = AreaInfo.objects.get(atitle='六安市')
+    # 2 查询广州市上级地区
+    parent = area.aParent
+    # 3 查询广州下级  一对多
+    child = area.areainfo_set.all()
+    # 使用模板
+    return render(request, 'booktest/areas.html', {'area': area, 'parent': parent, 'child': child})

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>自关联案例广州市</title>
+</head>
+<body>
+<h1>当前地区</h1>
+{{ area.atitle }}
+<h1>父级地区</h1>
+{{ parent.atitle }}
+<h1>下级地区</h1>
+<ul>
+    {% for c in child %}
+        <li>{{ c.atitle }}</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
