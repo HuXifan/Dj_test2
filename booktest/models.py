@@ -19,6 +19,22 @@ class HeroInfo(models.Model):
     hbook = models.ForeignKey('BookInfo')
     isDelete = models.BooleanField(default=False)  # 设置逻辑删除,默认不删除/软删除标记
 
-# 两个类有一对多的额关系
+
+# 两个类有一对多的关系,类之间有一对一，一对多，多对多的关系
+
+class NewsType(models.Model):
+    '''新闻类型类'''
+    typename = models.CharField(max_length=128)
+    # 关系类型代表下面的信息
+    typenews = models.ManyToManyField('NewInfo')
+
+
+class NewInfo(models.model):
+    title = models.CharField(max_length=128)
+    pub_date = models.DateTimeField(auto_created=True)
+    content = models.TextField()
+
+    # 定义关联属性。代表信息所属的类型
+    # news_tpye = models.ManyToManyField('NewsType')
 
 #  rm -rf .navicat64/
